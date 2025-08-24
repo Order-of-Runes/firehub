@@ -1,4 +1,3 @@
-
 // Copyright (c) 2025 Ravikant Authors. All rights reserved.
 
 import 'dart:async';
@@ -12,8 +11,9 @@ import 'analytics/analytics_manager.dart';
 /// taps on a notification.
 typedef SelectNotificationCallback = Future<dynamic> Function(String? payload);
 
-class FirebaseFireManager {
+class FlutterPulseManager {
   late final AnalyticsManager _analyticsManager;
+
   // // Flags
   // bool _hasGms = true;
 
@@ -24,12 +24,12 @@ class FirebaseFireManager {
 
   final Completer<void> _initCompleter = Completer();
 
-  Future<void> init() async {
+  Future<void> init({required FirebaseOptions options}) async {
     if (!isInitialized) {
       // Initialize firebase core
       // _platform ??= const LocalPlatform();
 
-      _firebaseApp = await _initializeFirebaseApp();
+      _firebaseApp = await _initializeFirebaseApp(options: options);
       // Initialize crashlytics & analytics
       _analyticsManager = AnalyticsManager();
       await _analyticsManager.init();
@@ -48,7 +48,7 @@ class FirebaseFireManager {
     return _analyticsManager;
   }
 
-  Future<FirebaseApp> _initializeFirebaseApp() {
-    return Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Future<FirebaseApp> _initializeFirebaseApp({required FirebaseOptions options}) {
+    return Firebase.initializeApp(options: options);
   }
 }

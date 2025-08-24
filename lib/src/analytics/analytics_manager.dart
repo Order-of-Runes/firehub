@@ -1,6 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart' show FlutterError, kDebugMode;
+import 'package:flutter/foundation.dart' show FlutterError, kDebugMode, kIsWeb, defaultTargetPlatform, TargetPlatform;
 import 'package:flutter_pulse/flutter_pulse.dart';
 
 // Toggle firebase crashlyctics in debug mode
@@ -73,7 +73,12 @@ class AnalyticsManager {
   Future<void> logEvent({required String name, Map<String, dynamic>? eventParameters}) async {
     assert(name.isNotEmpty, 'Name should not be empty');
     if (hasGms) {
-      await _firebaseAnalytics?.logEvent(name: name, parameters: {if (eventParameters.isNotNull) ...eventParameters!});
+      await _firebaseAnalytics?.logEvent(name: name, parameters: {if (eventParameters != null) ...eventParameters!});
     }
   }
 }
+/// Returns true if the app is running on a mobile device (Android or iOS).
+bool get isMobile =>
+    !kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS);
