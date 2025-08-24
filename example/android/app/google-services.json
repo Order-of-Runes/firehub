@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974781681172",
+    "project_id": "nepcrashlytics",
+    "storage_bucket": "nepcrashlytics.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974781681172:android:0d03a92505f3bcaf6fe101",
+        "android_client_info": {
+          "package_name": "com.example.example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEAu8_Dkv4bNjt3Pbn-EddkD_d8zd4KHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
