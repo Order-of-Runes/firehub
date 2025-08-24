@@ -7,11 +7,7 @@ import 'package:flutter/foundation.dart';
 
 import 'analytics/analytics_manager.dart';
 
-/// Signature of callback passed to [initialize] that is triggered when user
-/// taps on a notification.
-typedef SelectNotificationCallback = Future<dynamic> Function(String? payload);
-
-class FlutterPulseManager {
+class FireHubManager {
   late final AnalyticsManager _analyticsManager;
 
   // // Flags
@@ -26,8 +22,6 @@ class FlutterPulseManager {
 
   Future<void> init({required FirebaseOptions options}) async {
     if (!isInitialized) {
-      // Initialize firebase core
-      // _platform ??= const LocalPlatform();
 
       _firebaseApp = await _initializeFirebaseApp(options: options);
       // Initialize crashlytics & analytics

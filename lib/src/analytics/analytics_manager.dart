@@ -2,7 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show FlutterError, kDebugMode, kIsWeb, defaultTargetPlatform, TargetPlatform;
 
-// Toggle firebase crashlyctics in debug mode
+// Toggle firebase crashlytics in debug mode
 const bool enableFirebaseCrashlyticsInDebug = true;
 
 class AnalyticsManager {
