@@ -3,11 +3,11 @@ import 'package:firehub/firehub.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-FireHubManager firebaseManager = FireHubManager();
+Firehub firehub = Firehub(options: DefaultFirebaseOptions.currentPlatform);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await firebaseManager.init(options: DefaultFirebaseOptions.currentPlatform);
+  await firehub.init();
   runApp(const MyApp());
 }
 
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
           child: ElevatedButton(
             // onPressed: () => FirebaseCrashlytics.instance.crash(),
             onPressed: () async {
-              final analyticsManager = await firebaseManager.analyticsManager;
-              await analyticsManager.recordError('This is my Description', reason: 'errorReason');
-              await analyticsManager.logEvent(name: 'CHECK_Pressed', eventParameters: {'OO': ' TT'});
+              await firehub.crashlyticsHub?.recordError('This is my Description', reason: 'errorReason');
+              await firehub.analyticsHub?.logEvent(name: 'CHECK_Pressed', eventParameters: {'OO': ' TT'});
+
               throw Exception();
             },
             child: const Text("Crash App"),
@@ -48,7 +48,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
-              'you can reconfigure this by running the FlutterFire CLI again.',
+          'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError('DefaultFirebaseOptions are not supported for this platform.');
