@@ -10,9 +10,10 @@ import 'package:flutter/foundation.dart';
 class Firehub {
   Firehub({
     required this.options,
-    this.crashlyticsPulse = const FirePulse(),
-    this.analyticsPulse = const FirePulse(),
-  });
+    FirePulse crashlyticsPulse = const FirePulse(),
+    FirePulse analyticsPulse = const FirePulse(),
+  }) : _crashlyticsPulse = crashlyticsPulse,
+       _analyticsPulse = analyticsPulse;
 
   /// [Firebase.initializeApp] returns an instance of [FirebaseApp]
   /// The returned instance has not been used for anything else except
@@ -22,8 +23,8 @@ class Firehub {
   late final AnalyticsHub? _analyticsHub;
   late final CrashlyticsHub? _crashlyticsHub;
 
-  final FirePulse crashlyticsPulse;
-  final FirePulse analyticsPulse;
+  final FirePulse _crashlyticsPulse;
+  final FirePulse _analyticsPulse;
 
   final FirebaseOptions options;
 
@@ -34,16 +35,16 @@ class Firehub {
       _firebaseApp = await Firebase.initializeApp(options: options);
 
       // Initialize crashlytics & analytics
-      if (crashlyticsPulse.enable) {
+      if (_crashlyticsPulse.enable) {
         _crashlyticsHub = CrashlyticsHub(
-          enableInDebug: crashlyticsPulse.enableLoggingInDebug,
+          enableInDebug: _crashlyticsPulse.enableLoggingInDebug,
         );
         await _crashlyticsHub!.init();
       }
 
-      if (analyticsPulse.enable) {
+      if (_analyticsPulse.enable) {
         _analyticsHub = AnalyticsHub(
-          enableInDebug: analyticsPulse.enableLoggingInDebug,
+          enableInDebug: _analyticsPulse.enableLoggingInDebug,
         );
         await _analyticsHub!.init();
       }
