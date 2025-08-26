@@ -85,3 +85,14 @@ class DefaultFirebaseOptions {
     iosBundleId: 'com.asdfas',
   );
 }
+
+enum AnalyticsEvent implements FireEvent {
+  checkPressed('CHECK_Pressed');
+
+  const AnalyticsEvent(this._name);
+
+  final String _name;
+
+  @override
+  String get name => _name;
+}
