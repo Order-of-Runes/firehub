@@ -43,7 +43,7 @@ class AnalyticsHub {
   /// [name] : Name of the event
   ///
   /// [eventParameters] : Any additional information about the event
-  Future<void> logEvent({required FireEvent event, Map<String, dynamic>? eventParameters}) async {
+  Future<void> logEvent(FireEvent event, {Map<String, dynamic>? eventParameters}) async {
     final name = event.name;
     assert(name.isNotEmpty, 'Name should not be empty');
     if (_isInitialized) {
