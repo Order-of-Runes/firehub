@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
             // onPressed: () => FirebaseCrashlytics.instance.crash(),
             onPressed: () async {
               await firehub.crashlyticsHub?.recordError('This is my Description', reason: 'errorReason');
-              await firehub.analyticsHub?.logEvent(name: 'CHECK_AUG_25', eventParameters: {'OO': ' TT'});
+              await firehub.analyticsHub?.logEvent(AnalyticsEvent.checkAug25, eventParameters: {'OO': ' TT'});
               throw Exception();
             },
             child: const Text("Crash App"),
@@ -87,7 +87,7 @@ class DefaultFirebaseOptions {
 }
 
 enum AnalyticsEvent implements FireEvent {
-  checkPressed('CHECK_Pressed');
+  checkAug25('CHECK_AUG_25');
 
   const AnalyticsEvent(this._name);
 
