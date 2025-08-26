@@ -1,6 +1,7 @@
 // Copyright (c) 2025 Order of Runes Authors. All rights reserved.
 
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firehub/src/foundation/fire_event.dart';
 import 'package:flutter/foundation.dart';
 
 class AnalyticsHub {
@@ -42,14 +43,13 @@ class AnalyticsHub {
   /// [name] : Name of the event
   ///
   /// [eventParameters] : Any additional information about the event
-  Future<void> logEvent({required String name, Map<String, dynamic>? eventParameters}) async {
+  Future<void> logEvent({required FireEvent event, Map<String, dynamic>? eventParameters}) async {
+    final name = event.name;
     assert(name.isNotEmpty, 'Name should not be empty');
     if (_isInitialized) {
       await _firebaseAnalytics?.logEvent(
         name: name,
-        parameters: {
-          if (eventParameters != null) ...eventParameters,
-        },
+        parameters: {if (eventParameters != null) ...eventParameters},
       );
     }
   }
