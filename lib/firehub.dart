@@ -7,6 +7,8 @@ import 'package:firehub/src/analytics/analytics_hub.dart';
 import 'package:firehub/src/analytics/crashlytics_hub.dart';
 import 'package:flutter/foundation.dart';
 
+export 'src/analytics/analytics_hub.dart';
+export 'src/analytics/crashlytics_hub.dart';
 export 'src/foundation/fire_event.dart';
 
 /// Firehub intentionally avoids auto-discovery of firebase config from

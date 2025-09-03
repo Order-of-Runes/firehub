@@ -1,6 +1,6 @@
 name: firehub
 description: "A hub for firebase's apis"
-version: 0.0.2
+version: 0.0.3
 publish_to: none
 
 environment:
