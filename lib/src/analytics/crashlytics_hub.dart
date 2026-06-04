@@ -54,6 +54,12 @@ class CrashlyticsHub {
     }
   }
 
+  Future<void> log(String message) async {
+    if (_isInitialized) {
+      await _firebaseCrashlytics?.log(message);
+    }
+  }
+
   @visibleForTesting
   bool get isInitialized => _isInitialized;
 
@@ -62,7 +68,7 @@ class CrashlyticsHub {
   /// iOS
   /// Macos
   bool get _canLogCrash =>
-      !kIsWeb &&
+      !kIsWeb ||
       (defaultTargetPlatform == TargetPlatform.android ||
           defaultTargetPlatform == TargetPlatform.iOS ||
           defaultTargetPlatform == TargetPlatform.macOS);
